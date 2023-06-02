@@ -1,5 +1,4 @@
 const words = [
-  "",
   "OK",
   "a",
   "aah",
@@ -107573,15 +107572,34 @@ function arrayPicker(parameter) {
   var computer_aph = parameter[picker];
   return computer_aph;
 }
-
 export default function generateWord(len = null) {
   var word = arrayPicker(words);
+
   if (len != null) {
     while (word.length != len) {
       word = arrayPicker(words);
     }
   }
-  return { shuffle_word: shuffleWord(word), real_word: word };
+
+  const obj = {
+    real_word: word,
+    shuffle_word: shuffleWord(word),
+  };
+
+  return obj;
+}
+
+export function hasWord(para) {
+  let i = 0;
+  while (i < words.length) {
+    const word = words[i];
+    if (word.toLowerCase() == para.toLowerCase()) {
+      return true;
+    }
+    i++;
+  }
+
+  return false;
 }
 
 function shuffleWord(parameter) {

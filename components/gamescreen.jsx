@@ -2,24 +2,36 @@ import { useState } from "react";
 import BoxComponent from "./box";
 import styles from "./component.module.css";
 import GameButton from "./gameButton";
+import generateWord, { hasWord } from "../util/words";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function GameScreen() {
   const [text, setText] = useState("");
-  const [computer_text, setComputerText] = useState({});
+  const [counter, setCounter] = useState(0);
+  const [generatedWord, setGeneratedWord] = useState({});
+
+  function handleTest() {
+    if (hasWord(text)) {
+      toast.success("Good Job ✅");
+    } else {
+      toast.error("Try Again ");
+    }
+  }
 
   return (
     <div className={styles.gameScreen}>
+      <ToastContainer />
       <div className={styles.topRowLayout}>
         <div className={styles.left}>
-          <BoxComponent display="score" />
+          <BoxComponent display={`Score ---  ${counter}`} />
         </div>
         <div className={styles.right}>
           <BoxComponent display="Timer" />
         </div>
       </div>
 
-      <div className={styles.spacing}>
-        <BoxComponent display={computer_text.shuffle_word} width="70%" />
+      <div className={styles.spacing + " " + styles.bigText}>
+        <BoxComponent display={generatedWord.shuffle_word} width="70%" />
       </div>
       <div className={styles.spacing}>
         <BoxComponent display={text} width="50%" />
@@ -33,10 +45,10 @@ export default function GameScreen() {
           <GameButton showText={setText} display="E" />
           <GameButton showText={setText} display="F" />
           <GameButton showText={setText} display="G" />
-          <GameButton showText={setText} display="G" />
-          <GameButton showText={setText} display="I" />
           <GameButton showText={setText} display="H" />
+          <GameButton showText={setText} display="I" />
           <GameButton showText={setText} display="J" />
+          <GameButton showText={setText} display="K" />
           <GameButton showText={setText} display="L" />
           <GameButton showText={setText} display="M" />
           <GameButton showText={setText} display="N" />
@@ -54,6 +66,10 @@ export default function GameScreen() {
           <GameButton showText={setText} display="Z" />
         </BoxComponent>
 
+        <button onClick={handleTest} className={styles.box}>
+          Summit Answer
+        </button>
+
         <button
           className={styles.box}
           onClick={() => {
@@ -61,6 +77,15 @@ export default function GameScreen() {
           }}
         >
           Clear
+        </button>
+
+        <button
+          onClick={() => {
+            setGeneratedWord(generateWord(4));
+          }}
+          className={styles.box}
+        >
+          Generate Word
         </button>
       </div>
     </div>

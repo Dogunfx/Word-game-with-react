@@ -60,3 +60,7 @@
     border: 1px solid white;
     color: white;
 }
+
+.bigText {
+    font-size: 30px;
+}
