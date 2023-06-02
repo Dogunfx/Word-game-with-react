@@ -64,3 +64,11 @@
 .bigText {
     font-size: 30px;
 }
+
+@media (max-width: 765px) {
+    .gameScreen {
+        margin: 5px;
+        margin-top: 150px;
+        width: 100%;
+    }
+}
