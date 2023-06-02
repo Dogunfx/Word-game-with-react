@@ -13,6 +13,7 @@ export default function GameScreen() {
   function handleTest() {
     if (hasWord(text)) {
       toast.success("Good Job ✅");
+      setText("");
       setCounter((prevV) => {
         return prevV + 1;
       });
