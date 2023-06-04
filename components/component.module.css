@@ -2,11 +2,25 @@
     background-color: indigo;
     color: white;
     display: inline-block;
-    width: 100px;
+    width: 150px;
     padding: 8px 18px;
     margin: 4px 3px;
     border-radius: 5px;
     border: none;
+}
+
+
+.wordList {
+    /* background-color: red; */
+}
+
+.word {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin: 5px;
+    font-size: 12px;
+    background-color: #e0d8d8;
 }
 
 .gameScreen {
@@ -14,8 +28,7 @@
     padding: 12px;
     width: 60%;
     margin: auto;
-    margin-top: 250px;
-
+    margin-top: 150px;
 }
 
 .topRowLayout {
@@ -67,7 +80,7 @@
 
 @media (max-width: 450px) {
     .gameScreen {
-        margin: 5px;
+        margin: 0px;
         margin-top: 150px;
         width: 100%;
     }

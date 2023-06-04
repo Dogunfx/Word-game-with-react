@@ -107602,6 +107602,18 @@ export function hasWord(para) {
   return false;
 }
 
+export function isInArray(para, ary) {
+  let i = 0;
+  while (i < ary.length) {
+    const word = ary[i];
+    if (word.toLowerCase() == para.toLowerCase()) {
+      return true;
+    }
+    i++;
+  }
+  return false;
+}
+
 function shuffleWord(parameter) {
   var word = parameter;
   // control structure
