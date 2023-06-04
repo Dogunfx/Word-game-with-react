@@ -29,7 +29,7 @@ export default function GameScreen() {
   }
 
   const letterComponents = listOfLetters.map((letter, index) => (
-    <GameButton key={index} showText={setText} display={letter} />
+    <GameButton key={index} showText={setText} display={letter.toUpperCase()} />
   ));
 
   const wordComponents = listOfWords.map((word, index) => (
