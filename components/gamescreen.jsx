@@ -28,12 +28,14 @@ export default function GameScreen() {
     }
   }
 
-  const letterComponents = listOfLetters.map((letter) => (
-    <GameButton showText={setText} display={letter} />
+  const letterComponents = listOfLetters.map((letter, index) => (
+    <GameButton key={index} showText={setText} display={letter} />
   ));
 
-  const wordComponents = listOfWords.map((word) => (
-    <span className={styles.word}>{word}</span>
+  const wordComponents = listOfWords.map((word, index) => (
+    <span key={index} className={styles.word}>
+      {word}
+    </span>
   ));
 
   return (
