@@ -107614,7 +107614,7 @@ export function isInArray(para, ary) {
   return false;
 }
 
-function shuffleWord(parameter) {
+export function shuffleWord(parameter) {
   var word = parameter;
   // control structure
   // looping and branching

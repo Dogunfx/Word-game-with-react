@@ -2,12 +2,13 @@ import { useState } from "react";
 import BoxComponent from "./box";
 import styles from "./component.module.css";
 import GameButton from "./gameButton";
-import generateWord, { hasWord, isInArray } from "../util/words";
+import generateWord, { hasWord, isInArray, shuffleWord } from "../util/words";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function GameScreen() {
   const [text, setText] = useState("");
   const [counter, setCounter] = useState(0);
+  const [clear, setClear] = useState(true);
   const [listOfLetters, setListOfLetters] = useState([]);
   const [listOfWords, setListOfWords] = useState([]);
 
@@ -16,7 +17,7 @@ export default function GameScreen() {
       if (!isInArray(text, listOfWords)) {
         setListOfWords([...listOfWords, text]);
         toast.success("Good Job ✅");
-        setText("");
+        handleClear();
         setCounter((prevV) => {
           return prevV + 1;
         });
@@ -27,10 +28,16 @@ export default function GameScreen() {
       toast.error("Try Again ");
     }
   }
-
   const letterComponents = listOfLetters.map((letter, index) => (
     <GameButton key={index} showText={setText} display={letter.toUpperCase()} />
   ));
+
+  function handleClear() {
+    setText("");
+    // const w = shuffleWord(listOfLetters.join(""));
+    // setListOfLetters([...w]);
+    setClear(!clear);
+  }
 
   const wordComponents = listOfWords.map((word, index) => (
     <span key={index} className={styles.word}>
@@ -56,17 +63,14 @@ export default function GameScreen() {
           <BoxComponent display={text} width="50%" />
         </div>
         <div className={styles.spacing}>
-          <BoxComponent width="90%">{letterComponents}</BoxComponent>
+          <BoxComponent width="90%">
+            {clear ? letterComponents : <div>{letterComponents}</div>}
+          </BoxComponent>
           <button onClick={handleTest} className={styles.box}>
             Summit Answer
           </button>
 
-          <button
-            className={styles.box}
-            onClick={() => {
-              setText("");
-            }}
-          >
+          <button className={styles.box} onClick={handleClear}>
             Clear
           </button>
 

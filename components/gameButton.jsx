@@ -5,7 +5,7 @@ export default function GameButton({ showText, display }) {
   const [active, setActive] = useState(false);
 
   function handleClick() {
-    // setActive(!active);
+    setActive(!active);
     showText((prev) => prev + display);
   }
 
